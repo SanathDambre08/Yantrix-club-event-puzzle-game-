@@ -49,15 +49,18 @@ export function Layout() {
             </div>
           </Link>
 
-          {/* Logo Placeholders */}
-          <div className="flex items-center gap-2 sm:gap-4 justify-center flex-1">
-             <div className="h-8 w-16 sm:h-10 sm:w-24 border-2 border-dashed border-accent/40 bg-accent/5 flex items-center justify-center flex-col shrink-0">
-                <span className="text-[7px] sm:text-[9px] font-mono text-accent/60 text-center uppercase leading-tight">Yantrix<br/>Logo</span>
-             </div>
-             
-             <div className="h-8 w-16 sm:h-10 sm:w-24 border-2 border-dashed border-primary/40 bg-primary/5 flex items-center justify-center flex-col shrink-0">
-                <span className="text-[7px] sm:text-[9px] font-mono text-primary/60 text-center uppercase leading-tight">DYPIU<br/>Logo</span>
-             </div>
+          {/* Logos */}
+          <div className="flex items-center gap-3 sm:gap-6 justify-center flex-1">
+             <img 
+                src="/yantrix-logo.jpg" 
+                alt="Yantrix Logo" 
+                className="h-8 sm:h-10 object-contain rounded-full border border-accent/20"
+             />
+             <img 
+                src="/dypiu-logo.jpg" 
+                alt="DYPIU Logo" 
+                className="h-8 sm:h-10 object-contain bg-white rounded-md p-0.5 border border-primary/20"
+             />
           </div>
 
           {/* Navigation */}
