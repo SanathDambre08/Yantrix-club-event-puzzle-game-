@@ -47,8 +47,7 @@ export function PuzzleBoard({
     }),
     useSensor(TouchSensor, {
       activationConstraint: {
-        delay: 100,
-        tolerance: 5,
+        distance: 5, // No delay, picks up instantly after dragging 5 pixels!
       },
     })
   );
