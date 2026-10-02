@@ -1,32 +1,77 @@
-# React + TypeScript + Vite
+# ⚙️ YANI Puzzle Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> A high-octane sliding puzzle game event, organized by the **Yantrix Robotics & Aeronautics Club** at **DYPIU**.
 
-Currently, two official plugins are available:
+![YANI Robot](public/robot-logo.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🎯 The Event
+The **YANI Puzzle Challenge** is an interactive, time-based sliding puzzle game designed for a live campus event. Participants race against the clock to reassemble the YANI Robot. The system features a brutalist, industrial UI aesthetic, tracking solving times and move counts to rank players on a global live leaderboard.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Key Features
+- **🧩 Interactive Sliding Puzzle:** A dynamic, randomized sliding puzzle logic built from scratch to challenge participants.
+- **📱 Fully Responsive:** Carefully optimized for both mobile and desktop (including instant drag-and-drop touch response for mobile devices).
+- **🏆 Global Leaderboard:** Real-time leaderboard ranking participants based on completion time and fewest moves.
+- **👑 Admin Dashboard:** A secure, protected route for event organizers to track live participant registrations and view game statistics.
+- **🎨 Industrial Brutalism UI:** A heavy-machinery, bold aesthetic utilizing stark contrasts, bold typography, hazard stripes, and grayscale elements for a unique visual experience.
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## 🛠️ Tech Stack
+This project was built with modern web development tools to ensure a lightning-fast and seamless experience:
+
+- **Frontend:** [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) + [Vite](https://vitejs.dev/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) (with custom brutalist utility classes)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Backend & Database:** [Supabase](https://supabase.com/) (Authentication, Postgres Database)
+- **Deployment & Hosting:** [Vercel](https://vercel.com/) (with client-side routing support)
+
+---
+
+## 🚀 Getting Started (Local Development)
+
+If you'd like to run this project locally, follow these steps:
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/SanathDambre08/Yantrix-club-event-puzzle-game-.git
+cd Yantrix-club-event-puzzle-game-/yani-puzzle
+```
+
+### 2. Install Dependencies
+```bash
+npm install
+```
+
+### 3. Setup Environment Variables
+Create a `.env.local` file in the root directory and add your Supabase credentials:
+```env
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+### 4. Start the Development Server
+```bash
+npm run dev
+```
+The game will now be running on `http://localhost:5173`.
+
+---
+
+## 📦 Deployment
+This project is configured for seamless deployment on **Vercel**. 
+The `vercel.json` file ensures that React Router's client-side SPA routing works correctly without throwing `404 Not Found` errors when refreshing pages.
 
 ```json
 {
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+---
+
+## 👥 Organizers
+Proudly developed for and organized by the **Yantrix Robotics & Aeronautics Club** at **Dr. D. Y. Patil International University (DYPIU)**.
