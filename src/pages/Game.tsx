@@ -18,6 +18,27 @@ export function Game() {
   const [showExitConfirm, setShowExitConfirm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const [boardSize, setBoardSize] = useState(300);
+
+  // Calculate the optimal board size so both boards fit on screen without scrolling
+  useEffect(() => {
+    const updateSize = () => {
+      const maxWidth = window.innerWidth - 48; // Account for horizontal padding
+      // Account for HUD (~100px), titles (~60px), gaps (~60px), exit button (~60px) = ~280px total vertical space
+      const maxHeight = (window.innerHeight - 280) / 2; // Divide by 2 because there are 2 boards stacked on mobile
+      
+      // If we're on desktop (lg breakpoint), they are side-by-side, so maxHeight doesn't need to be divided by 2
+      const isDesktop = window.innerWidth >= 1024;
+      const finalMaxHeight = isDesktop ? window.innerHeight - 200 : maxHeight;
+
+      setBoardSize(Math.max(150, Math.min(340, maxWidth, finalMaxHeight)));
+    };
+
+    updateSize();
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
   // Redirect if no game session
   useEffect(() => {
     if (!state.gameSession || !state.puzzleGameState) {
@@ -137,9 +158,9 @@ export function Game() {
   const previewScore = calculateScore(elapsedSeconds, moveCount);
 
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center px-4 py-6 relative z-10">
+    <div className="min-h-dvh flex flex-col items-center justify-center px-2 py-4 relative z-10 overflow-hidden">
       {/* Game HUD - Top Bar */}
-      <div className="w-full max-w-sm mb-6 slide-up">
+      <div className="w-full max-w-sm mb-4 slide-up">
         <div className="flex items-center justify-between glass-panel px-4 py-3 border border-primary/30 shadow-glow-primary">
           <Timer
             isRunning={!isCompleted}
@@ -161,7 +182,7 @@ export function Game() {
       </div>
 
       {/* Puzzle Board */}
-      <div className="mb-6">
+      <div className="mb-4">
         <PuzzleBoard
           initialTiles={state.puzzleGameState.tiles}
           initialMoveCount={state.puzzleGameState.moves || 0}
@@ -169,7 +190,7 @@ export function Game() {
           onMove={handleMove}
           onComplete={handleComplete}
           isActive={!isCompleted}
-          boardSize={Math.min(340, window.innerWidth - 48)}
+          boardSize={boardSize}
         />
       </div>
 
