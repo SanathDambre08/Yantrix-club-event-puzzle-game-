@@ -68,6 +68,7 @@ export function Home() {
                 LEADERBOARD
               </Button>
             </Link>
+          </div>
         </div>
       </section>
 
