@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=JetBrains+Mono:wght@400;700;800;900&display=swap');
+@import "tailwindcss";
+
+/* ========================================
+   YANI Puzzle Challenge — INDUSTRIAL BRUTALISM (FINAL)
+   ======================================== */
+
+@theme {
+  /* Brutalist Colors */
+  --color-background: #C4C4C4; /* Darker Concrete Grey */
+  --color-surface: #FFFFFF; /* Stark White */
+  --color-surface-elevated: #E5E5E5;
+  --color-primary: #FF3300; /* Hazard Orange */
+  --color-primary-hover: #CC2900;
+  --color-accent: #FFCC00; /* Construction Yellow */
+  --color-accent-hover: #E6B800;
+  --color-success: #00E640;
+  --color-warning: #FFCC00;
+  --color-danger: #FF0000;
+  
+  --color-text: #000000; /* Absolute Black */
+  --color-text-muted: #333333;
+  --color-text-dim: #666666;
+  --color-border: #000000; /* Solid Black */
+  --color-border-hover: #000000;
+
+  /* NO rounded corners in Brutalism */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-full: 0px;
+
+  /* Brutalist Hard Shadows */
+  --shadow-brutal: 8px 8px 0px 0px rgba(0, 0, 0, 1);
+  --shadow-brutal-lg: 12px 12px 0px 0px rgba(0, 0, 0, 1);
+  --shadow-brutal-sm: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+
+  /* Fonts */
+  --font-display: 'JetBrains Mono', monospace;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.5;
+    min-height: 100dvh;
+    font-weight: 600; /* Thicker base font for brutalism */
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 14px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-background);
+    border-left: 4px solid black;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border: 4px solid black;
+  }
+
+  :focus-visible {
+    outline: 4px solid var(--color-accent);
+    outline-offset: 0px;
+  }
+
+  button, input, select, textarea {
+    font-family: inherit;
+    color: inherit;
+    border: none;
+    background: none;
+  }
+}
+
+@layer utilities {
+  .shadow-brutal {
+    box-shadow: var(--shadow-brutal);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+  
+  .shadow-brutal:active, .shadow-brutal-active {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+    transform: translate(8px, 8px);
+  }
+
+  .drop-shadow-brutal {
+    filter: drop-shadow(8px 8px 0px rgba(0,0,0,1));
+  }
+
+  .border-brutal {
+    border: 4px solid var(--color-border);
+  }
+
+  .border-brutal-thick {
+    border: 8px solid var(--color-border);
+  }
+
+  .hazard-stripes {
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--color-accent),
+      var(--color-accent) 20px,
+      #000000 20px,
+      #000000 40px
+    );
+    background-size: 56px 56px;
+  }
+
+  .hazard-stripes-animated {
+    animation: moveStripes 2s linear infinite;
+  }
+
+  /* Mechanical Animations */
+  .fade-in { animation: fadeIn 0.1s steps(2, end) forwards; }
+  .slide-up { animation: snapUp 0.2s cubic-bezier(0,1,1,1) forwards; }
+  .scale-in { animation: snapIn 0.2s cubic-bezier(0,1,1,1) forwards; }
+  .animate-float { animation: float 4s ease-in-out infinite; }
+
+  /* Bolted effect for cards */
+  .bolted-corners {
+    position: relative;
+  }
+  .bolted-corners::before,
+  .bolted-corners::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-border);
+    border-radius: 50%;
+    z-index: 10;
+  }
+  .bolted-corners::before { top: 12px; left: 12px; box-shadow: calc(100% - 36px) 0 0 var(--color-border); }
+  .bolted-corners::after { bottom: 12px; left: 12px; box-shadow: calc(100% - 36px) 0 0 var(--color-border); }
+}
+
+@keyframes moveStripes {
+  0% { background-position: 0 0; }
+  100% { background-position: 56px 0; }
+}
+
+@keyframes conveyorBelt {
+  0% { background-position: 0px 0px; }
+  100% { background-position: 100px 100px; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes snapUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes snapIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
