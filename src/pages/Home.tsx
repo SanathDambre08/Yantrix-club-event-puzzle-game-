@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Cpu, Trophy, Zap, Target, Clock, Users } from 'lucide-react';
+import { Trophy, Zap, Target, Clock, Users } from 'lucide-react';
 import { Button } from '../components/ui';
 import { Card } from '../components/ui';
 
@@ -15,12 +15,19 @@ export function Home() {
         </div>
 
         <div className="relative max-w-3xl mx-auto px-4 text-center flex flex-col items-center">
-          {/* YANI Badge */}
-          <div className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-4 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-3 sm:mb-6 fade-in max-w-full">
-            <Cpu className="text-primary shrink-0" size={14} />
-            <span className="text-xs sm:text-sm font-medium text-primary text-balance">
-              Yantrix Robotics & Aeronautics Club
-            </span>
+          {/* Top Logos */}
+          <div className="flex items-center justify-center gap-6 sm:gap-10 mb-6 sm:mb-8 fade-in">
+             <img 
+                src="/dypiu-logo.jpg" 
+                alt="DYPIU Logo" 
+                className="h-14 sm:h-16 object-contain bg-white p-1.5 border-2 border-primary/20 shadow-brutal rounded-sm" 
+             />
+             <div className="w-px h-10 bg-border"></div>
+             <img 
+                src="/yantrix-logo.jpg" 
+                alt="Yantrix Logo" 
+                className="h-14 sm:h-16 object-contain rounded-full border-2 border-accent/20 shadow-brutal" 
+             />
           </div>
 
           {/* Title */}
@@ -61,29 +68,6 @@ export function Home() {
                 LEADERBOARD
               </Button>
             </Link>
-          </div>
-
-          {/* Organizers */}
-          <div className="mt-12 sm:mt-20 flex flex-col items-center slide-up" style={{ animationDelay: '0.3s' }}>
-            <p className="text-[10px] font-mono text-text-muted mb-4 sm:mb-6 uppercase tracking-[0.2em] relative flex items-center justify-center w-full">
-              <span className="w-8 sm:w-16 h-px bg-border absolute left-0 sm:-left-20"></span>
-              Event Organized By
-              <span className="w-8 sm:w-16 h-px bg-border absolute right-0 sm:-right-20"></span>
-            </p>
-            <div className="flex items-center justify-center gap-6 sm:gap-12">
-               <img 
-                  src="/dypiu-logo.jpg" 
-                  alt="DYPIU Logo" 
-                  className="h-16 sm:h-24 object-contain bg-white p-2 border-2 border-primary/20 shadow-brutal grayscale-[0.5] hover:grayscale-0 transition-all duration-300 rounded-sm" 
-               />
-               <div className="w-px h-12 bg-border hidden sm:block"></div>
-               <img 
-                  src="/yantrix-logo.jpg" 
-                  alt="Yantrix Logo" 
-                  className="h-16 sm:h-24 object-contain rounded-full border-2 border-accent/20 shadow-brutal grayscale-[0.5] hover:grayscale-0 transition-all duration-300" 
-               />
-            </div>
-          </div>
         </div>
       </section>
 
