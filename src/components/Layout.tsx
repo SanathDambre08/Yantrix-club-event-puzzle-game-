@@ -1,5 +1,4 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Cpu } from 'lucide-react';
 import { CyberBackground } from './ui';
 
 export function Layout() {
@@ -25,13 +24,23 @@ export function Layout() {
       <div className="min-h-dvh flex flex-col relative z-10">
         {/* Header */}
         <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-accent/20">
-        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-lg bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-colors">
-              <Cpu className="text-primary" size={20} />
+        <div className="max-w-5xl mx-auto px-4 py-2 sm:py-3 flex items-center justify-between gap-2">
+          {/* Brand */}
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 group shrink-0">
+            {/* Miniature Brutalist Logo */}
+            <div className="w-10 h-10 bg-surface border-2 border-black flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-300 shrink-0 hazard-stripes">
+              <div className="absolute inset-0 bg-background/80 m-0.5 border border-black flex flex-col items-center justify-center overflow-hidden">
+                <img 
+                  src="/robot-logo.png" 
+                  alt="YANI Logo" 
+                  className="w-6 object-contain grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500 mix-blend-luminosity relative z-10" 
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.25)_50%)] bg-[length:100%_2px] pointer-events-none mix-blend-overlay z-20" />
+              </div>
             </div>
-            <div>
-              <h1 className="text-base font-bold text-text leading-tight">
+            
+            <div className="hidden sm:block">
+              <h1 className="text-base font-bold text-text leading-tight group-hover:text-primary transition-colors">
                 YANI Puzzle
               </h1>
               <p className="text-[10px] text-text-muted leading-tight uppercase tracking-wider">
@@ -40,12 +49,24 @@ export function Layout() {
             </div>
           </Link>
 
-          <nav className="flex items-center gap-4">
+          {/* Logo Placeholders */}
+          <div className="flex items-center gap-2 sm:gap-4 justify-center flex-1">
+             <div className="h-8 w-16 sm:h-10 sm:w-24 border-2 border-dashed border-accent/40 bg-accent/5 flex items-center justify-center flex-col shrink-0">
+                <span className="text-[7px] sm:text-[9px] font-mono text-accent/60 text-center uppercase leading-tight">Yantrix<br/>Logo</span>
+             </div>
+             
+             <div className="h-8 w-16 sm:h-10 sm:w-24 border-2 border-dashed border-primary/40 bg-primary/5 flex items-center justify-center flex-col shrink-0">
+                <span className="text-[7px] sm:text-[9px] font-mono text-primary/60 text-center uppercase leading-tight">DYPIU<br/>Logo</span>
+             </div>
+          </div>
+
+          {/* Navigation */}
+          <nav className="flex items-center gap-3 sm:gap-4 shrink-0">
             {!isAdminRoute && (
               <>
                 <Link
                   to="/leaderboard"
-                  className="text-sm text-text-muted hover:text-text transition-colors"
+                  className="text-xs sm:text-sm font-medium text-text-muted hover:text-text transition-colors uppercase tracking-wider"
                 >
                   Leaderboard
                 </Link>
@@ -54,7 +75,7 @@ export function Layout() {
             {isAdminRoute && (
               <Link
                 to="/admin"
-                className="text-sm text-text-muted hover:text-text transition-colors"
+                className="text-xs sm:text-sm font-medium text-text-muted hover:text-text transition-colors uppercase tracking-wider"
               >
                 Dashboard
               </Link>
