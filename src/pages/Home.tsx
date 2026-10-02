@@ -62,6 +62,28 @@ export function Home() {
               </Button>
             </Link>
           </div>
+
+          {/* Organizers */}
+          <div className="mt-12 sm:mt-20 flex flex-col items-center slide-up" style={{ animationDelay: '0.3s' }}>
+            <p className="text-[10px] font-mono text-text-muted mb-4 sm:mb-6 uppercase tracking-[0.2em] relative flex items-center justify-center w-full">
+              <span className="w-8 sm:w-16 h-px bg-border absolute left-0 sm:-left-20"></span>
+              Event Organized By
+              <span className="w-8 sm:w-16 h-px bg-border absolute right-0 sm:-right-20"></span>
+            </p>
+            <div className="flex items-center justify-center gap-6 sm:gap-12">
+               <img 
+                  src="/dypiu-logo.jpg" 
+                  alt="DYPIU Logo" 
+                  className="h-16 sm:h-24 object-contain bg-white p-2 border-2 border-primary/20 shadow-brutal grayscale-[0.5] hover:grayscale-0 transition-all duration-300 rounded-sm" 
+               />
+               <div className="w-px h-12 bg-border hidden sm:block"></div>
+               <img 
+                  src="/yantrix-logo.jpg" 
+                  alt="Yantrix Logo" 
+                  className="h-16 sm:h-24 object-contain rounded-full border-2 border-accent/20 shadow-brutal grayscale-[0.5] hover:grayscale-0 transition-all duration-300" 
+               />
+            </div>
+          </div>
         </div>
       </section>
 

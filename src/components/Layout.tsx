@@ -49,22 +49,8 @@ export function Layout() {
             </div>
           </Link>
 
-          {/* Logos */}
-          <div className="flex items-center gap-3 sm:gap-6 justify-center flex-1">
-             <img 
-                src="/yantrix-logo.jpg" 
-                alt="Yantrix Logo" 
-                className="h-8 sm:h-10 object-contain rounded-full border border-accent/20"
-             />
-             <img 
-                src="/dypiu-logo.jpg" 
-                alt="DYPIU Logo" 
-                className="h-8 sm:h-10 object-contain bg-white rounded-md p-0.5 border border-primary/20"
-             />
-          </div>
-
           {/* Navigation */}
-          <nav className="flex items-center gap-3 sm:gap-4 shrink-0">
+          <nav className="flex items-center gap-3 sm:gap-4 shrink-0 ml-auto">
             {!isAdminRoute && (
               <>
                 <Link
