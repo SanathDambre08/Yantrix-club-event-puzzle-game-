@@ -247,7 +247,6 @@ export function Dashboard() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
         {[
           { to: '/admin/questions', label: 'Questions', icon: <Plus size={18} /> },
-          { to: '/admin/puzzle', label: 'Puzzle', icon: <Gamepad2 size={18} /> },
           { to: '/admin/students', label: 'Students', icon: <Users size={18} /> },
           { to: '/admin/settings', label: 'Settings', icon: <Settings size={18} /> },
         ].map((nav) => (
