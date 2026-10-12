@@ -3,6 +3,7 @@ import { Trophy, Clock, Move, Medal } from 'lucide-react';
 import { formatTime } from '../lib/scoring';
 import type { LeaderboardEntry } from '../types';
 import { supabase } from '../lib/supabase';
+import { formatErrorMessage } from '../lib/utils';
 
 interface LeaderboardProps {
   highlightStudentId?: string;
@@ -69,7 +70,7 @@ export function Leaderboard({
       setError(null);
     } catch (err) {
       console.error('Failed to fetch leaderboard:', err);
-      setError('Failed to load leaderboard. Please try again.');
+      setError(formatErrorMessage(err, 'Failed to load leaderboard. Please try again.'));
     } finally {
       setIsLoading(false);
     }

@@ -4,6 +4,7 @@ import { Shield, Cpu } from 'lucide-react';
 import { Button, Input } from '../../components/ui';
 import { Card } from '../../components/ui';
 import { supabase } from '../../lib/supabase';
+import { formatErrorMessage } from '../../lib/utils';
 
 export function AdminLogin() {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ export function AdminLogin() {
       navigate('/admin');
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : 'Login failed. Please try again.'
+        formatErrorMessage(err, 'Login failed. Please try again.')
       );
     } finally {
       setIsLoading(false);

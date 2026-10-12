@@ -92,3 +92,24 @@ export function median(values: number[]): number {
     ? sorted[mid]
     : (sorted[mid - 1] + sorted[mid]) / 2;
 }
+
+/**
+ * Format error message, detecting Supabase inactivity/pause network errors.
+ */
+export function formatErrorMessage(err: unknown, fallback: string = 'An unexpected error occurred.'): string {
+  if (err instanceof Error) {
+    const msg = err.message.toLowerCase();
+    if (msg.includes('failed to fetch') || msg.includes('network') || msg.includes('load failed')) {
+      return 'Unable to reach database. If inactive, the Supabase project may be paused. Please restore it in the Supabase dashboard.';
+    }
+    return err.message;
+  }
+  if (typeof err === 'object' && err !== null && 'message' in err) {
+    const msg = String((err as { message: unknown }).message).toLowerCase();
+    if (msg.includes('failed to fetch') || msg.includes('network')) {
+      return 'Unable to reach database. If inactive, the Supabase project may be paused. Please restore it in the Supabase dashboard.';
+    }
+    return String((err as { message: unknown }).message);
+  }
+  return fallback;
+}

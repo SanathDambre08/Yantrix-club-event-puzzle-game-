@@ -5,7 +5,7 @@ import { Card } from '../components/ui';
 import { DynamicQuestion } from '../components/DynamicQuestion';
 import { useGame } from '../contexts/GameContext';
 import { supabase } from '../lib/supabase';
-import { YEAR_OPTIONS, isValidEmail } from '../lib/utils';
+import { YEAR_OPTIONS, isValidEmail, formatErrorMessage } from '../lib/utils';
 import type { CustomQuestion } from '../types';
 
 export function Registration() {
@@ -142,7 +142,7 @@ export function Registration() {
       navigate('/ready');
     } catch (err) {
       console.error('Registration failed:', err);
-      setSubmitError('Registration failed. Please try again.');
+      setSubmitError(formatErrorMessage(err, 'Registration failed. Please try again.'));
     } finally {
       setIsSubmitting(false);
     }

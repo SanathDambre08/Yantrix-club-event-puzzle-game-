@@ -6,6 +6,7 @@ import { Card } from '../components/ui';
 import { useGame } from '../contexts/GameContext';
 import { supabase } from '../lib/supabase';
 import { createInitialState } from '../lib/puzzle';
+import { formatErrorMessage } from '../lib/utils';
 
 export function Ready() {
   const navigate = useNavigate();
@@ -76,7 +77,7 @@ export function Ready() {
     } catch (err) {
       console.error('Failed to start game:', err);
       setError(
-        err instanceof Error ? err.message : 'Failed to start game. Please try again.'
+        formatErrorMessage(err, 'Failed to start game. Please try again.')
       );
     } finally {
       setIsStarting(false);
