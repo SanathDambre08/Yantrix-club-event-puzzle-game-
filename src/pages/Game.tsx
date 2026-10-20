@@ -186,7 +186,7 @@ export function Game() {
         <PuzzleBoard
           initialTiles={state.puzzleGameState.tiles}
           initialMoveCount={state.puzzleGameState.moves || 0}
-          imageUrl={state.puzzle.image_url}
+          imageUrl={(state.puzzle?.image_url || '').trim() || '/yani-robot.jpg'}
           onMove={handleMove}
           onComplete={handleComplete}
           isActive={!isCompleted}

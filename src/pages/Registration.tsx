@@ -21,6 +21,7 @@ export function Registration() {
   // Questions
   const [questions, setQuestions] = useState<CustomQuestion[]>([]);
   const [isLoadingQuestions, setIsLoadingQuestions] = useState(true);
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
   // Validation
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -28,24 +29,27 @@ export function Registration() {
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Fetch active questions
+  const fetchQuestions = async () => {
+    setIsLoadingQuestions(true);
+    setFetchError(null);
+    try {
+      const { data, error } = await supabase
+        .from('custom_questions')
+        .select('*')
+        .eq('active', true)
+        .order('order_index', { ascending: true });
+
+      if (error) throw error;
+      setQuestions(data || []);
+    } catch (err) {
+      console.error('Failed to fetch questions:', err);
+      setFetchError(formatErrorMessage(err, 'Unable to connect to database. If inactive, the Supabase project may be paused.'));
+    } finally {
+      setIsLoadingQuestions(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('custom_questions')
-          .select('*')
-          .eq('active', true)
-          .order('order_index', { ascending: true });
-
-        if (error) throw error;
-        setQuestions(data || []);
-      } catch (err) {
-        console.error('Failed to fetch questions:', err);
-      } finally {
-        setIsLoadingQuestions(false);
-      }
-    };
-
     fetchQuestions();
   }, []);
 
@@ -239,10 +243,30 @@ export function Registration() {
             </div>
           ) : null}
 
+          {/* Fetch Questions Error */}
+          {fetchError && (
+            <div className="p-3.5 rounded-lg bg-danger/10 border border-danger/30 text-danger text-sm flex flex-col gap-2">
+              <div className="flex items-start gap-2">
+                <span className="font-semibold text-danger">⚠️ Connection Issue:</span>
+                <span>{fetchError}</span>
+              </div>
+              <button
+                type="button"
+                onClick={fetchQuestions}
+                className="self-start text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 bg-danger/20 hover:bg-danger/30 text-danger border border-danger/40 rounded transition-colors"
+              >
+                ↻ Retry Connection
+              </button>
+            </div>
+          )}
+
           {/* Submit Error */}
           {submitError && (
-            <div className="p-3 rounded-lg bg-danger/10 border border-danger/20 text-danger text-sm">
-              {submitError}
+            <div className="p-3.5 rounded-lg bg-danger/10 border border-danger/30 text-danger text-sm flex flex-col gap-2">
+              <div className="flex items-start gap-2">
+                <span className="font-semibold text-danger">⚠️ Notice:</span>
+                <span>{submitError}</span>
+              </div>
             </div>
           )}
 

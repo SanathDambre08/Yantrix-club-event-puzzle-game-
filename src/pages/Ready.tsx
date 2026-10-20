@@ -39,6 +39,9 @@ export function Ready() {
         throw new Error('No active puzzle found. Please contact an admin.');
       }
 
+      // Ensure clean image URL without unwanted newlines
+      puzzle.image_url = (puzzle.image_url || '').trim() || '/yani-robot.jpg';
+
       // 2. Generate solvable shuffle
       const puzzleTiles = createInitialState();
 

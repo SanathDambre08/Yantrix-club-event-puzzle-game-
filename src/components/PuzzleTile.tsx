@@ -29,6 +29,8 @@ export function PuzzleTile({
     zIndex: isDragging ? 50 : 1,
   } : {};
 
+  const cleanImageUrl = (imageUrl || '').trim() || '/yani-robot.jpg';
+
   return (
     <button
       ref={setNodeRef}
@@ -45,7 +47,7 @@ export function PuzzleTile({
         ...style,
         width: tileSize,
         height: tileSize,
-        backgroundImage: `url(${imageUrl})`,
+        backgroundImage: `url("${cleanImageUrl}")`,
         backgroundSize: `${GRID_SIZE * 100}% ${GRID_SIZE * 100}%`,
         backgroundPositionX,
         backgroundPositionY,
@@ -53,7 +55,7 @@ export function PuzzleTile({
       disabled={isCompleted}
       aria-label={`Puzzle piece ${value}`}
     >
-      {!imageUrl && (
+      {!cleanImageUrl && (
         <span className="flex items-center justify-center w-full h-full text-xl font-bold text-text bg-surface">
           {value}
         </span>

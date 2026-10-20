@@ -35,6 +35,8 @@ export function PuzzleBoard({
   const [moveCount, setMoveCount] = useState(initialMoveCount);
   const [isCompleted, setIsCompleted] = useState(false);
 
+  const cleanImageUrl = (imageUrl || '').trim() || '/yani-robot.jpg';
+
   const gap = 4;
   const tileSize = (boardSize - gap * (GRID_SIZE - 1)) / GRID_SIZE;
 
@@ -123,7 +125,7 @@ export function PuzzleBoard({
                   <PuzzleTile
                     value={value}
                     index={globalIndex}
-                    imageUrl={imageUrl}
+                    imageUrl={cleanImageUrl}
                     isCompleted={isCompleted}
                     tileSize={tileSize}
                   />
